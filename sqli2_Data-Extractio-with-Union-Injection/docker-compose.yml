@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    build: ./database
+    image: sqli2-db:latest
+    container_name: sqli2-db-container
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+    ports:
+      - "3306:3306"
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend-container
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: db
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend-container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

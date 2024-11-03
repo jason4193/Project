@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: xss1-backend
+    environment:
+      FLASK_ENV: development
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/app
+  frontend:
+    build:
+      context: ./frontend
+    container_name: xss1-frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/var/www/html
+    depends_on:
+      - backend
