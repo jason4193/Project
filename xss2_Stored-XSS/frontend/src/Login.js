@@ -37,6 +37,7 @@ function Login() {
       <Navi />
       <div className="form-card">
         <h1>Login</h1>
+        <pre>User: user1 Password: simplepassword</pre>
         <form onSubmit={handleLogin}>
           <div>
             <label>Username:</label>
