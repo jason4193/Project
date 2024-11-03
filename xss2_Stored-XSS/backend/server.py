@@ -10,8 +10,8 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 dbconfig = {
-    # "host": "xss2-database",
-    "host": "localhost",
+    "host": "xss2-database",
+    # "host": "localhost",
     "user": "root",
     "password": "password",
     "database": "xss2"
@@ -30,7 +30,7 @@ def get_db_connection():
         print(f"Error connecting to MySQL: {e}", flush=True)
         return None
 
-link = 'http://localhost:3000/blogs'
+link = 'http://localhost:3000'
 
 # Middleware for authentication
 def authentication(func):

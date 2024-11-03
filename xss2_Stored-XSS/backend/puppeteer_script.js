@@ -24,6 +24,13 @@ async function simulateUserVisit(link) {
         process.stdout.write('Navigating to link: ' + link + '\n');
         await page.goto(link, { waitUntil: 'networkidle2' });
         process.stdout.write('Visited link: ' + link + '\n');
+
+        // Use setTimeout to wait for 5 seconds
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 5000)));
+       
+        // get the title of the page
+        const title = await page.title();
+        process.stdout.write('Title of the page: ' + title + '\n');
         
         await browser.close();
         process.stdout.write('Browser closed.\n');
@@ -36,6 +43,7 @@ const link = process.argv[2];
 if (link && link.startsWith('http://localhost:3000')) {
     // Convert the link from http://localhost:3000 to http://xss1-frontend:3000 and keep the rest of the path
     const convertedLink = 'http://xss2-frontend:3000' + link.slice(21);
+    // const convertedLink = link;
     simulateUserVisit(convertedLink).then(() => {
         process.stdout.write('Simulated user visit to ' + convertedLink + '\n');
     }).catch(err => {
