@@ -14,7 +14,7 @@ function Home() {
   const renderData = (data) => {
     return data.map((blog, id) => {
       return (
-        <div key={id}>
+        <div id={id} className="blog-card">
           <h2>{blog.title}</h2>
           <p>{blog.content}</p>
         </div>
@@ -32,7 +32,9 @@ function Home() {
           <button type="submit">Search</button>
         </form>
         <br />
-        {data.length > 0 && renderData(data)}
+        <div className='result'>
+          {data.length > 0 && renderData(data)}
+        </div>
     </div>
   );
 }

@@ -28,7 +28,9 @@ function Home() {
       <div className="App">
         <h2>Welcome, {username}</h2>
         <p>{flag}</p>
-        <button onClick={handleLogout}>Logout</button>
+        <div className='logout'>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
       </div>
     );
   }
